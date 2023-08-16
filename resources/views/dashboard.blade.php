@@ -46,12 +46,7 @@
                                         <a href="{{ route('dashboard.edit', $country->id)}}" class="btn btn-primary">Edit</a>
                                     </td>
                                     <td>
-                                        <form action="{{ route('dashboard.delete',$country->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-item-id="{{$country->id }}">Delete </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -62,5 +57,26 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this country?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ route('dashboard.delete',$country->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cansel</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
