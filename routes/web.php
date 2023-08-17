@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
+use App\Http\Middleware\IsraelAccessMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'israel'])->group(function () {
     Route::get('/dashboard', [CountryController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/edit/{id}', [CountryController::class, 'showOne'])->name('dashboard.edit');
     Route::post('/dashboard', [CountryController::class, 'create'])->name('dashboard.create');
